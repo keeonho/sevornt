@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sevornt</title>
-<meta name="description" content="©SEVORNT. Outlaw youth, live from the in between.">
+<meta name="description" content="©SEVORNT mixtape, side A. Outlaw youth, live from the in between.">
 <meta name="theme-color" content="#0e0f0c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230e0f0c'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Impact,sans-serif' text-anchor='middle' fill='%23c8f031'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,14 +23,13 @@ body{background:var(--black);color:var(--white);font-family:Archivo,system-ui,sa
 img{display:block;max-width:100%}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .ic{width:1em;height:1em;flex:none}
-/* photocopy grain over everything */
 body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.2;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain .4s steps(1) infinite}
 @keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-2%,3%)}66%{transform:translate(3%,-2%)}}
 
 /* ---------- sevornt visual language ---------- */
-.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.88;text-transform:uppercase}
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.86;text-transform:uppercase}
 .mono{font-family:"Space Mono",monospace}
 .dirt{font-family:"Rubik Dirt",Anton,sans-serif}
 .spray{color:var(--lime);text-shadow:0 0 18px rgba(200,240,49,.55),0 0 2px var(--lime)}
@@ -38,7 +37,6 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .cut .ph{position:relative;width:100%;height:100%;overflow:hidden;background:#333;clip-path:polygon(2% 1%,30% 0,60% 2%,99% 0,100% 40%,98% 70%,100% 99%,60% 100%,30% 98%,0 100%,1% 60%,0 30%)}
 .cut img{width:100%;height:100%;object-fit:cover}
 .ht::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.32) 1px,transparent 1.7px);background-size:4px 4px;mix-blend-mode:multiply}
-.limeflash::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lime);mix-blend-mode:multiply;opacity:0;transition:opacity .25s}
 .jit{animation:jit .5s steps(1) infinite}
 @keyframes jit{0%{transform:translate(0,0)}33%{transform:translate(1px,-1px) rotate(.3deg)}66%{transform:translate(-1px,1px) rotate(-.3deg)}}
 .glitch{position:relative}
@@ -47,157 +45,172 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 .glitch::after{color:var(--lime-d);clip-path:inset(65% 0 0 0);animation:gl2 2.7s steps(1) infinite}
 @keyframes gl1{0%,92%,100%{transform:none}93%{transform:translate(-6px,1px)}96%{transform:translate(5px,-2px)}}
 @keyframes gl2{0%,88%,100%{transform:none}89%{transform:translate(7px,0)}94%{transform:translate(-4px,2px)}}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:var(--black);font-family:Anton;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;padding:12px 24px;text-decoration:none;
-  clip-path:polygon(0 8%,96% 0,100% 88%,4% 100%);transition:translate .15s}
-.btn:active{translate:2px 3px}
-.btn:focus-visible,.card:focus-visible,.play-btn:focus-visible{outline:3px solid var(--white);outline-offset:4px}
+.wmark{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:96;pointer-events:none;user-select:none;
+  font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(.72rem,3vw,.9rem);line-height:1.25;text-align:right;color:var(--lime);opacity:.55;text-shadow:0 0 6px rgba(0,0,0,.9)}
 
-/* ---------- intro ---------- */
-#intro{position:fixed;inset:0;z-index:97;background:var(--black);display:grid;place-items:center;align-content:center;gap:18px;text-align:center;padding:var(--gutter)}
-#intro .anton{font-size:clamp(4.6rem,24vw,10rem)}
-#intro .mono{font-size:.9rem;color:var(--gray);letter-spacing:.2em}
-.splat{position:absolute;border-radius:50%;background:var(--lime);filter:blur(1px);opacity:0}
-#enter{opacity:0;pointer-events:none}
-#enter.ready{opacity:1;pointer-events:auto;animation:pulse 1.2s steps(2) infinite}
-@keyframes pulse{50%{background:var(--white)}}
-.wire{position:absolute;left:0;width:100%;height:60px;overflow:visible;pointer-events:none}
+/* ---------- intro: the cassette ---------- */
+#intro{position:fixed;inset:0;z-index:97;background:radial-gradient(ellipse at 50% 40%,#2c2d27,var(--black) 70%);display:grid;place-items:center;align-content:center;gap:26px;padding:var(--gutter)}
+.tape{position:relative;width:min(88vw,420px);aspect-ratio:1.58;background:#1b1c18;border:3px solid #3a3b34;border-radius:14px;box-shadow:0 30px 60px rgba(0,0,0,.6),inset 0 0 0 6px #121310}
+.tape .label{position:absolute;left:6%;right:6%;top:7%;height:60%;background:var(--paper);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:38% 1fr}
+.tape .label img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1)}
+.tape .label .txt{padding:8px 10px;color:var(--black);display:grid;align-content:start;gap:4px}
+.tape .label .txt .anton{font-size:clamp(1.6rem,8vw,2.6rem)}
+.tape .label .txt .mono{font-size:.68rem;line-height:1.3}
+.tape .window{position:absolute;left:42%;right:8%;top:44%;height:18%;background:#0b0b09;border-radius:30px;border:2px solid #3a3b34;display:flex;justify-content:space-between;align-items:center;padding:0 6%}
+.reel{width:clamp(30px,9vw,46px);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(#f6f6f1 0 18deg,#0b0b09 18deg 60deg);border:4px solid #f6f6f1}
+.tape .holes{position:absolute;left:30%;right:30%;bottom:6%;height:14%;background:#2a2b25;clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
+.deck-btn{display:inline-flex;align-items:center;gap:12px;background:var(--lime);color:var(--black);font-family:Anton;font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 28px;border-radius:6px;box-shadow:0 7px 0 var(--lime-d),0 14px 30px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:translate .1s,box-shadow .1s}
+.deck-btn.ready{opacity:1;pointer-events:auto}
+.deck-btn:active{translate:0 6px;box-shadow:0 1px 0 var(--lime-d)}
+.deck-btn:focus-visible{outline:3px solid var(--white);outline-offset:4px}
+#intro .hint{font-size:.85rem;color:var(--gray);letter-spacing:.18em}
 
-/* ---------- hero ---------- */
-#hero{position:relative;min-height:100dvh;overflow:hidden;display:grid;place-items:center;
-  background:radial-gradient(ellipse at 30% 20%,#3a3b35 0,transparent 55%),radial-gradient(ellipse at 80% 90%,#30312b 0,transparent 50%),var(--concrete)}
-#hero .scratch{position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(97deg,transparent 0 40px,rgba(255,255,255,.05) 40px 41px),repeating-linear-gradient(8deg,transparent 0 120px,rgba(0,0,0,.25) 120px 124px)}
-.swoosh{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.stage{position:relative;width:min(88vw,520px);aspect-ratio:1;display:grid;place-items:center}
-.stage .cut{width:58%;aspect-ratio:3/4;rotate:-3deg;z-index:2}
-.orbit{position:absolute;inset:0;z-index:3;pointer-events:none}
-.orbit text{font-family:Anton;font-size:30px;letter-spacing:6px;fill:var(--lime)}
-.logo{position:absolute;left:50%;top:62%;translate:-50% 0;z-index:4;font-size:clamp(4rem,19vw,8.4rem);white-space:nowrap}
-.thorn{position:absolute;z-index:3;width:clamp(40px,10vw,70px);color:var(--lime)}
-.hero-tag{position:absolute;left:var(--gutter);top:max(20px,3dvh);font-size:.82rem;color:var(--gray);letter-spacing:.15em}
-
-/* ---------- ticker ---------- */
-.ticker{position:relative;background:var(--lime);color:var(--black);rotate:-2deg;margin:-14px -10px 0;padding:12px 0;overflow:hidden;z-index:5}
-.ticker .row{display:flex;gap:30px;white-space:nowrap;width:max-content;font-size:clamp(1.4rem,6vw,2.4rem)}
-.ticker .row span{display:inline-flex;align-items:center;gap:30px}
-.ticker .ic{font-size:.8em}
-
-/* ---------- in between (paper) ---------- */
-#between{position:relative;background:var(--paper);color:var(--black);padding:110px var(--gutter) 100px;overflow:hidden}
-.bt-in{position:relative;max-width:1100px;margin:0 auto;display:grid;gap:40px;align-items:center}
-.poster{position:relative;width:min(84vw,420px);justify-self:center;rotate:2deg;box-shadow:0 20px 40px rgba(0,0,0,.25)}
-.poster img{width:100%}
-.live{font-size:clamp(2.8rem,12vw,5.6rem);color:var(--red);line-height:.95;filter:blur(.4px)}
-.live span{display:inline-block}
-.star{position:absolute;color:var(--red);opacity:.6;filter:blur(3px)}
-.blessed{font-family:Archivo;font-weight:500;color:var(--red);font-size:clamp(1.5rem,6vw,2.4rem);line-height:1.15;margin-top:26px}
-.bt-copy .mono{display:block;margin-top:22px;color:#55564f;font-size:.9rem}
-@media (min-width:900px){ .bt-in{grid-template-columns:1fr 1fr} }
-
-/* ---------- roster ---------- */
-#roster{position:relative;padding:100px var(--gutter) 120px;background:var(--black)}
-.r-head{text-align:center;position:relative}
-.r-head .anton{font-size:clamp(3.6rem,17vw,9rem);color:transparent;-webkit-text-stroke:2px var(--lime)}
-.r-head .mono{display:block;color:var(--gray);margin-top:10px;letter-spacing:.15em;font-size:.9rem}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:40px 16px;max-width:1150px;margin:54px auto 0}
-.card{position:relative;text-align:left;display:block;width:100%}
-.card .cut{aspect-ratio:3/4;transition:rotate .3s}
-.card:nth-child(odd) .cut{rotate:-2.5deg} .card:nth-child(even) .cut{rotate:2deg}
-.card .t{display:block;font-size:clamp(2.2rem,10vw,3.6rem);color:var(--lime);margin-top:12px;line-height:.9}
-.card .n{display:block;font-family:"Space Mono";font-size:.92rem;color:var(--white);margin-top:4px;line-height:1.3}
-.card:hover .limeflash::before,.card.zap .limeflash::before{opacity:.85}
-.card.zap{animation:shake .35s steps(3)}
-@keyframes shake{33%{translate:-4px 2px}66%{translate:4px -2px}}
-@media (min-width:760px){ .cards{grid-template-columns:repeat(4,1fr);gap:56px 28px} }
-
-/* ---------- outro ---------- */
-#outro{position:relative;min-height:90dvh;display:grid;place-items:center;align-content:center;text-align:center;gap:16px;padding:80px var(--gutter) 140px;overflow:hidden;background:var(--concrete)}
-#outro .cut{width:min(72vw,360px);aspect-ratio:1;rotate:3deg}
-#outro .anton{font-size:clamp(3.6rem,16vw,7rem)}
-#outro .mono{color:var(--gray);letter-spacing:.2em}
-
-/* ---------- player ---------- */
-.player{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));z-index:95}
-.play-btn{display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--black);color:var(--white);border:2px solid var(--lime);clip-path:polygon(0 0,100% 4%,98% 100%,2% 96%)}
-.play-btn .rec{font-size:34px;color:var(--lime)}
-.player.on .rec{animation:spin 1.8s linear infinite}
+/* ---------- HUD (fixed) ---------- */
+.hud{position:fixed;left:0;right:0;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:max(12px,env(safe-area-inset-top)) var(--gutter) 10px;pointer-events:none;
+  font-family:"Space Mono";font-size:.78rem;letter-spacing:.12em;color:var(--white);mix-blend-mode:difference}
+.hud .play-btn{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;color:var(--white);font-family:"Space Mono";font-size:.78rem;letter-spacing:.12em}
+.hud .play-btn .ic{font-size:22px}
+.player-on .hud .tapeic{animation:spin 2s linear infinite}
 @keyframes spin{to{rotate:360deg}}
-.play-btn b{display:block;font-family:Anton;font-weight:400;font-size:.95rem;letter-spacing:.05em;text-align:left;line-height:1.1}
-.play-btn small{display:block;font-family:"Space Mono";font-size:.68rem;color:var(--gray);text-align:left}
-.play-btn .pp{font-size:18px;color:var(--lime)}
 
-@media (prefers-reduced-motion:reduce){ body::after,.jit,.glitch::before,.glitch::after,.player.on .rec,#enter.ready{animation:none} }
+/* ---------- side A opener (split, diagonal) ---------- */
+#sideA{position:relative;min-height:100dvh;overflow:hidden;background:var(--black)}
+.diag{position:absolute;inset:0;background:var(--concrete);clip-path:polygon(0 0,62% 0,38% 100%,0 100%)}
+.vert{position:absolute;left:-2%;top:50%;translate:0 -50%;writing-mode:vertical-rl;rotate:180deg;font-size:clamp(5.6rem,30vw,13rem);color:transparent;-webkit-text-stroke:2px var(--lime);opacity:.9}
+.sa-photo{position:absolute;right:4%;top:14%;width:min(62vw,380px);aspect-ratio:3/4;rotate:4deg;z-index:2}
+.sa-photo2{position:absolute;left:18%;bottom:12%;width:min(36vw,220px);aspect-ratio:1;rotate:-7deg;z-index:3}
+.strip{position:absolute;left:-10%;right:-10%;top:58%;rotate:-8deg;z-index:4;background:var(--paper);padding:12px 0;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.strip .dirt{display:block;white-space:nowrap;color:var(--red);font-size:clamp(2rem,9vw,4.4rem);line-height:1;padding-left:12%}
+.sa-logo{position:absolute;right:var(--gutter);bottom:max(70px,9dvh);z-index:5;font-size:clamp(3.4rem,16vw,8rem);text-align:right}
+.sa-side{position:absolute;left:var(--gutter);top:max(56px,8dvh);z-index:5;font-size:.82rem;color:var(--gray);letter-spacing:.2em}
+.blob{position:absolute;z-index:1;pointer-events:none}
+.scrollcue{position:absolute;left:50%;bottom:22px;translate:-50% 0;z-index:5;color:var(--lime);font-size:26px}
+
+/* ---------- tracks (pinned slideshow) ---------- */
+#tracks{position:relative;height:100dvh;overflow:hidden;background:var(--black)}
+.slide{position:absolute;inset:0;visibility:hidden}
+.slide.on{visibility:visible}
+.slide .bigno{position:absolute;font-family:Anton;color:#1c1d19;font-size:clamp(14rem,70vw,34rem);line-height:.8;pointer-events:none;z-index:0}
+.slide .cut{position:absolute;z-index:2}
+.slide .t{position:absolute;z-index:3;font-size:clamp(4.4rem,24vw,12rem);color:var(--lime);overflow:hidden;white-space:nowrap}
+.slide .t span{display:inline-block}
+.slide .n{position:absolute;z-index:3;font-family:"Space Mono";font-size:clamp(.95rem,4vw,1.3rem);color:var(--white);background:var(--black);padding:4px 10px;border:1.5px solid var(--lime)}
+.slide .thorn{position:absolute;z-index:3;color:var(--lime);width:clamp(36px,9vw,64px)}
+/* three compositions, rotated through the tracklist */
+.slide.l1 .cut{left:6%;top:16%;width:min(62vw,400px);aspect-ratio:3/4;rotate:-3deg}
+.slide.l1 .t{right:4%;bottom:15%;text-align:right}
+.slide.l1 .n{right:5%;bottom:calc(15% - 38px)}
+.slide.l1 .bigno{right:-4%;top:6%}
+.slide.l1 .thorn{right:12%;top:14%;rotate:18deg}
+.slide.l2 .cut{left:50%;top:50%;width:min(56vw,360px);aspect-ratio:3/4;translate:-50% -50%;rotate:2deg}
+.slide.l2 .t{left:0;right:0;top:50%;translate:0 -50%;text-align:center;-webkit-text-stroke:3px var(--black);paint-order:stroke fill}
+.slide.l2 .n{left:50%;bottom:12%;translate:-50% 0}
+.slide.l2 .bigno{left:-6%;bottom:-4%}
+.slide.l2 .thorn{left:10%;top:18%;rotate:-24deg}
+.slide.l3 .cut{right:6%;bottom:16%;width:min(58vw,380px);aspect-ratio:4/5;rotate:5deg}
+.slide.l3 .t{left:4%;top:13%;writing-mode:vertical-rl;rotate:180deg}
+.slide.l3 .n{left:5%;bottom:14%}
+.slide.l3 .bigno{right:-2%;top:-2%}
+.slide.l3 .thorn{left:46%;top:22%;rotate:-8deg}
+@media (min-width:900px){
+  .slide.l1 .cut{left:12%;width:min(32vw,440px)} .slide.l1 .t{right:10%;bottom:22%} .slide.l1 .n{right:10%;bottom:calc(22% - 44px)}
+  .slide.l3 .cut{right:14%;width:min(30vw,420px)} .slide.l3 .t{left:10%}
+  .slide.l2 .cut{width:min(26vw,380px)}
+}
+.flash{position:absolute;inset:0;z-index:6;background:var(--lime);mix-blend-mode:difference;opacity:0;pointer-events:none}
+.tbar{position:absolute;left:var(--gutter);right:var(--gutter);bottom:max(52px,7dvh);z-index:7;display:flex;align-items:center;gap:12px;font-family:"Space Mono";font-size:.8rem;color:var(--white)}
+.tbar .track{flex:1;height:3px;background:#3a3b34;position:relative}
+.tbar .track i{position:absolute;inset:0;background:var(--lime);transform-origin:left;transform:scaleX(var(--p,0))}
+.tbar .ticks{display:flex;gap:3px}
+
+/* ---------- back of the tape ---------- */
+#back{position:relative;background:var(--paper);color:var(--black);padding:90px var(--gutter) 120px}
+.jcard{min-width:0;max-width:1000px;margin:0 auto;border:3px solid var(--black);display:grid;grid-template-columns:1fr;background:var(--paper);box-shadow:12px 12px 0 var(--lime)}
+.jspine{background:var(--black);color:var(--lime);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.jspine .anton{font-size:clamp(2rem,8vw,3rem)}
+.jspine .mono{font-size:.78rem;color:var(--paper)}
+.jbody{padding:22px 18px 26px;display:grid;gap:28px;min-width:0}
+.jbody>*{min-width:0}
+.side-h{font-family:Anton;font-size:1.3rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:3px solid var(--black);padding-bottom:6px;margin-bottom:10px}
+.tl{list-style:none;columns:2;column-gap:24px}
+.tl li{break-inside:avoid}
+.tl button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;padding:6px 0;font-family:Archivo;font-weight:800;font-size:1.05rem;color:var(--black);border-bottom:1px dashed #b9b7ae}
+.tl button span{font-family:"Space Mono";font-weight:400;font-size:.85rem;color:#55564f}
+.tl button:hover{color:var(--red)}
+.tl button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.liner{display:grid;gap:16px;align-content:start}
+.liner .blessed{color:var(--red);font-weight:500;font-size:clamp(1.6rem,6.4vw,2.4rem);line-height:1.12}
+.liner .live{font-family:"Rubik Dirt";color:var(--red);font-size:clamp(1.6rem,6vw,2.4rem);line-height:1}
+.liner img{width:100%;max-width:300px;rotate:-2deg;box-shadow:0 12px 26px rgba(0,0,0,.25)}
+@media (min-width:900px){ .jbody{grid-template-columns:1.5fr 1fr;padding:30px} }
+.end{text-align:center;margin-top:70px}
+.end .anton{font-size:clamp(3.6rem,16vw,8rem);color:var(--black)}
+.end .mono{display:block;margin-top:10px;color:#55564f;letter-spacing:.2em}
+
+@media (max-width:520px){ .tl{columns:1} .jspine{flex-wrap:wrap;gap:4px} }
+@media (prefers-reduced-motion:reduce){ body::after,.jit,.glitch::before,.glitch::after,.player-on .hud .tapeic{animation:none} }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-fire" viewBox="0 0 256 256" fill="currentColor"><path d="M143.38,17.85a8,8,0,0,0-12.63,3.41l-22,60.41L84.59,58.26a8,8,0,0,0-11.93.89C51,87.53,40,116.08,40,144a88,88,0,0,0,176,0C216,84.55,165.21,36,143.38,17.85Zm40.51,135.49a57.6,57.6,0,0,1-46.56,46.55A7.65,7.65,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256" fill="currentColor"><path d="M213.85,125.46l-112,120a8,8,0,0,1-13.69-7l14.66-73.33L45.19,143.49a8,8,0,0,1-3-13l112-120a8,8,0,0,1,13.69,7L153.18,90.9l57.63,21.61a8,8,0,0,1,3,12.95Z"/></symbol><symbol id="i-pause" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"/></symbol><symbol id="i-play" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></symbol><symbol id="i-skull" viewBox="0 0 256 256" fill="currentColor"><path d="M128,16C70.65,16,24,60.86,24,116c0,34.1,18.27,66,48,84.28V216a16,16,0,0,0,16,16h8a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h16a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h8a16,16,0,0,0,16-16V200.28C213.73,182,232,150.1,232,116,232,60.86,185.35,16,128,16ZM92,152a20,20,0,1,1,20-20A20,20,0,0,1,92,152Zm72,0a20,20,0,1,1,20-20A20,20,0,0,1,164,152Z"/></symbol><symbol id="i-spray-bottle" viewBox="0 0 256 256" fill="currentColor"><path d="M200,80a8,8,0,0,0,8-8,56.06,56.06,0,0,0-56-56H80A16,16,0,0,0,64,32V80a24,24,0,0,1-24,24,8,8,0,0,0,0,16A40,40,0,0,0,80,80h32v24.62a23.87,23.87,0,0,1-9,18.74L87,136.15a39.79,39.79,0,0,0-15,31.23V224a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V211.47A270.88,270.88,0,0,0,174,80ZM80,32h72a40.08,40.08,0,0,1,39.2,32H80Z"/></symbol><symbol id="i-star-four" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.79,15.79,0,0,1-10.5,15l-63.44,23.07L143,229.5a16,16,0,0,1-30,0L89.94,166.06,26.5,143a16,16,0,0,1,0-30L89.94,89.94,113,26.5a16,16,0,0,1,30,0l23.07,63.44L229.5,113A15.79,15.79,0,0,1,240,128Z"/></symbol><symbol id="i-vinyl-record" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM72,128a8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16A56.06,56.06,0,0,0,72,128Zm32,0a24,24,0,1,1,24,24A24,24,0,0,1,104,128Zm24,72a8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0A72.08,72.08,0,0,1,128,200Z"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-arrow-down" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72A8,8,0,0,1,56,136h64V40a8,8,0,0,1,16,0v96h64a8,8,0,0,1,5.66,13.66Z"/></symbol><symbol id="i-cassette-tape" viewBox="0 0 256 256" fill="currentColor"><path d="M156.3,96a31.92,31.92,0,0,0,0,32H99.7a31.92,31.92,0,0,0,0-32ZM72,96a16,16,0,1,0,16,16A16,16,0,0,0,72,96ZM240,64V192a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V64A16,16,0,0,1,32,48H224A16,16,0,0,1,240,64ZM186,192l-15.6-20.8A8,8,0,0,0,164,168H92a8,8,0,0,0-6.4,3.2L70,192Zm30-80a32,32,0,0,0-32-32H72a32,32,0,0,0,0,64H184A32,32,0,0,0,216,112ZM184,96a16,16,0,1,0,16,16A16,16,0,0,0,184,96Z"/></symbol><symbol id="i-fire" viewBox="0 0 256 256" fill="currentColor"><path d="M143.38,17.85a8,8,0,0,0-12.63,3.41l-22,60.41L84.59,58.26a8,8,0,0,0-11.93.89C51,87.53,40,116.08,40,144a88,88,0,0,0,176,0C216,84.55,165.21,36,143.38,17.85Zm40.51,135.49a57.6,57.6,0,0,1-46.56,46.55A7.65,7.65,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256" fill="currentColor"><path d="M213.85,125.46l-112,120a8,8,0,0,1-13.69-7l14.66-73.33L45.19,143.49a8,8,0,0,1-3-13l112-120a8,8,0,0,1,13.69,7L153.18,90.9l57.63,21.61a8,8,0,0,1,3,12.95Z"/></symbol><symbol id="i-pause" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"/></symbol><symbol id="i-play" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></symbol><symbol id="i-skull" viewBox="0 0 256 256" fill="currentColor"><path d="M128,16C70.65,16,24,60.86,24,116c0,34.1,18.27,66,48,84.28V216a16,16,0,0,0,16,16h8a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h16a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h8a16,16,0,0,0,16-16V200.28C213.73,182,232,150.1,232,116,232,60.86,185.35,16,128,16ZM92,152a20,20,0,1,1,20-20A20,20,0,0,1,92,152Zm72,0a20,20,0,1,1,20-20A20,20,0,0,1,164,152Z"/></symbol><symbol id="i-spray-bottle" viewBox="0 0 256 256" fill="currentColor"><path d="M200,80a8,8,0,0,0,8-8,56.06,56.06,0,0,0-56-56H80A16,16,0,0,0,64,32V80a24,24,0,0,1-24,24,8,8,0,0,0,0,16A40,40,0,0,0,80,80h32v24.62a23.87,23.87,0,0,1-9,18.74L87,136.15a39.79,39.79,0,0,0-15,31.23V224a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V211.47A270.88,270.88,0,0,0,174,80ZM80,32h72a40.08,40.08,0,0,1,39.2,32H80Z"/></symbol><symbol id="i-star-four" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.79,15.79,0,0,1-10.5,15l-63.44,23.07L143,229.5a16,16,0,0,1-30,0L89.94,166.06,26.5,143a16,16,0,0,1,0-30L89.94,89.94,113,26.5a16,16,0,0,1,30,0l23.07,63.44L229.5,113A15.79,15.79,0,0,1,240,128Z"/></symbol><symbol id="i-vinyl-record" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM72,128a8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16A56.06,56.06,0,0,0,72,128Zm32,0a24,24,0,1,1,24,24A24,24,0,0,1,104,128Zm24,72a8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0A72.08,72.08,0,0,1,128,200Z"/></symbol></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <symbol id="thorn" viewBox="0 0 60 120"><path fill="currentColor" d="M30 0 C 34 20, 44 26, 58 22 C 46 32, 40 40, 42 56 C 50 52, 56 54, 60 60 C 48 62, 40 70, 38 86 C 44 90, 46 98, 44 108 C 38 100, 32 98, 30 120 C 28 98, 22 100, 16 108 C 14 98, 16 90, 22 86 C 20 70, 12 62, 0 60 C 4 54, 10 52, 18 56 C 20 40, 14 32, 2 22 C 16 26, 26 20, 30 0Z"/></symbol>
-  <symbol id="spark" viewBox="0 0 100 100"><path fill="currentColor" d="M50 0 C 54 34, 66 46, 100 50 C 66 54, 54 66, 50 100 C 46 66, 34 54, 0 50 C 34 46, 46 34, 50 0Z"/></symbol>
 </defs></svg>
+<div class="wmark" aria-hidden="true">made with love by<br>@listsfsrobot</div>
+<audio id="song" src="audio/shut-it-down.mp3" preload="auto" loop></audio>
 
 <div id="intro">
-  <svg class="wire" style="top:18%" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path id="wire1" d="M0 30 C 60 10, 100 50, 160 30 S 260 10, 320 30 S 380 50, 400 30" fill="none" stroke="#c8f031" stroke-width="2.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><g class="barb" transform="translate(25 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(70 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(115 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(160 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(205 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(250 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(295 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(340 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(385 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g></svg>
-  <div class="anton spray glitch" data-t="sevornt" id="iLogo">sevornt</div>
-  <div class="mono">outlaw youth</div>
-  <button class="btn" id="enter" type="button"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>tap to enter</button>
+  <div class="tape" id="tape" aria-hidden="true">
+    <div class="label"><img src="img/cover.webp" alt=""><div class="txt"><div class="anton">sevornt</div><div class="mono">side a<br>outlaw youth</div></div></div>
+    <div class="window"><span class="reel"></span><span class="reel"></span></div>
+    <div class="holes"></div>
+  </div>
+  <button class="deck-btn" id="enter" type="button"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>press play</button>
+  <span class="mono hint">©sevornt mixtape</span>
 </div>
 
-<div class="player" id="player">
-  <audio id="song" src="audio/shut-it-down.mp3" preload="auto" loop></audio>
-  <button class="play-btn" id="playBtn" type="button" aria-pressed="false" aria-label="Play Shut It Down by Drake and The-Dream">
-    <svg class="ic rec" aria-hidden="true"><use href="#i-vinyl-record"/></svg><span><b>SHUT IT DOWN</b><small>Drake &amp; The-Dream</small></span><svg class="ic pp" aria-hidden="true"><use href="#i-play"/></svg>
-  </button>
+<div class="hud" aria-label="Player">
+  <span id="hudLeft">©SEVORNT · SIDE A</span>
+  <button class="play-btn" id="playBtn" type="button" aria-pressed="false" aria-label="Play Shut It Down by Drake and The-Dream"><svg class="ic tapeic" aria-hidden="true"><use href="#i-cassette-tape"/></svg><span id="ppTxt">PLAY</span></button>
 </div>
 
 <main>
-  <!-- HERO -->
-  <section id="hero">
-    <div class="scratch" aria-hidden="true"></div>
-    <span class="hero-tag mono">©SEVORNT</span>
-    <svg class="swoosh" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path class="sw" fill="#c8f031" d="M70 120 C 20 220, 40 360, 110 330 C 170 300, 120 200, 160 140 C 190 95, 140 60, 70 120Z"/>
-      <path class="sw" fill="#c8f031" d="M300 40 C 350 60, 340 120, 300 170 C 270 205, 250 250, 262 300 C 230 250, 240 190, 272 140 C 296 102, 286 70, 300 40Z"/>
-      <path class="sw" fill="#c8f031" d="M40 520 C 90 470, 160 500, 140 560 C 125 605, 70 620, 52 670 C 30 620, 10 560, 40 520Z" opacity=".85"/>
-    </svg>
-    <div class="stage">
-      <svg class="orbit" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="circ" d="M200 200 m -170 0 a 170 170 0 1 1 340 0 a 170 170 0 1 1 -340 0"/></defs>
-        <g id="orbitG"><text><textPath href="#circ">OUTLAW · YOUTH · OUTLAW · YOUTH · OUTLAW · YOUTH ·</textPath></text></g></svg>
-      <div class="cut h-in"><div class="ph ht jit"><img src="img/s6.webp" alt="Seonghyeon, the Sevornt muse"></div></div>
-      <svg class="thorn h-in" style="left:4%;top:56%;rotate:-20deg" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg>
-      <svg class="thorn h-in" style="right:6%;top:66%;rotate:24deg;width:clamp(30px,8vw,52px)" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg>
-      <h1 class="logo anton spray glitch h-in" data-t="©sevornt">©sevornt</h1>
-    </div>
+  <!-- SIDE A -->
+  <section id="sideA" aria-labelledby="sa-h">
+    <div class="diag" aria-hidden="true"></div>
+    <div class="vert anton" aria-hidden="true">outlaw</div>
+    <svg class="blob" style="right:-10%;top:4%;width:min(70vw,420px)" viewBox="0 0 200 200" aria-hidden="true"><path class="bl" fill="#c8f031" d="M120 10 C 180 20, 190 90, 150 120 C 120 140, 140 180, 100 190 C 60 200, 20 160, 40 120 C 55 90, 30 60, 60 30 C 80 12, 100 6, 120 10Z"/></svg>
+    <span class="sa-side mono">side a · track 00</span>
+    <div class="cut sa-photo"><div class="ph ht jit"><img src="img/s3.webp" alt="Seonghyeon in a hood, the Sevornt muse"></div></div>
+    <div class="cut sa-photo2"><div class="ph ht"><img src="img/s8.webp" alt=""></div></div>
+    <div class="strip" aria-hidden="true"><span class="dirt">LIVE FROM THE IN BETWEEN · LIVE FROM THE IN BETWEEN</span></div>
+    <h1 class="sa-logo anton spray glitch" id="sa-h" data-t="©sevornt">©sevornt</h1>
+    <svg class="ic scrollcue" aria-hidden="true"><use href="#i-arrow-down"/></svg>
   </section>
 
-  <div class="ticker anton" aria-hidden="true"><div class="row" id="tick"><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span></div></div>
+  <!-- TRACKS -->
+  <section id="tracks" aria-label="Tracklist, one member per track">
+    <article class="slide l1" data-title="Stray" aria-label="Track 1: Stray, Anya"><span class="bigno" aria-hidden="true">01</span><div class="cut"><div class="ph ht"><img src="img/s1.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>S</span><span>T</span><span>R</span><span>A</span><span>Y</span></h3><span class="n">(Anya)</span></article><article class="slide l2" data-title="Wired" aria-label="Track 2: Wired, Wis"><span class="bigno" aria-hidden="true">02</span><div class="cut"><div class="ph ht"><img src="img/s5.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>W</span><span>I</span><span>R</span><span>E</span><span>D</span></h3><span class="n">(Wis)</span></article><article class="slide l3" data-title="Rogue" aria-label="Track 3: Rogue, Erome"><span class="bigno" aria-hidden="true">03</span><div class="cut"><div class="ph ht"><img src="img/s9.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>R</span><span>O</span><span>G</span><span>U</span><span>E</span></h3><span class="n">(Erome)</span></article><article class="slide l1" data-title="Restless" aria-label="Track 4: Restless, Edrael"><span class="bigno" aria-hidden="true">04</span><div class="cut"><div class="ph ht"><img src="img/s4.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>R</span><span>E</span><span>S</span><span>T</span><span>L</span><span>E</span><span>S</span><span>S</span></h3><span class="n">(Edrael)</span></article><article class="slide l2" data-title="Drift" aria-label="Track 5: Drift, Ozil"><span class="bigno" aria-hidden="true">05</span><div class="cut"><div class="ph ht"><img src="img/s8.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>D</span><span>R</span><span>I</span><span>F</span><span>T</span></h3><span class="n">(Ozil)</span></article><article class="slide l3" data-title="Rush" aria-label="Track 6: Rush, Sabda"><span class="bigno" aria-hidden="true">06</span><div class="cut"><div class="ph ht"><img src="img/s3.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>R</span><span>U</span><span>S</span><span>H</span></h3><span class="n">(Sabda)</span></article><article class="slide l1" data-title="Vex" aria-label="Track 7: Vex, Tarung"><span class="bigno" aria-hidden="true">07</span><div class="cut"><div class="ph ht"><img src="img/s7.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>V</span><span>E</span><span>X</span></h3><span class="n">(Tarung)</span></article><article class="slide l2" data-title="Rowdy" aria-label="Track 8: Rowdy, Alvez"><span class="bigno" aria-hidden="true">08</span><div class="cut"><div class="ph ht"><img src="img/s2.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>R</span><span>O</span><span>W</span><span>D</span><span>Y</span></h3><span class="n">(Alvez)</span></article><article class="slide l3" data-title="Brat" aria-label="Track 9: Brat, Vaggi"><span class="bigno" aria-hidden="true">09</span><div class="cut"><div class="ph ht"><img src="img/s6.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>B</span><span>R</span><span>A</span><span>T</span></h3><span class="n">(Vaggi)</span></article><article class="slide l1" data-title="Blade" aria-label="Track 10: Blade, Hisyam"><span class="bigno" aria-hidden="true">10</span><div class="cut"><div class="ph ht"><img src="img/s1.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>B</span><span>L</span><span>A</span><span>D</span><span>E</span></h3><span class="n">(Hisyam)</span></article><article class="slide l2" data-title="Grudge" aria-label="Track 11: Grudge, Cepa"><span class="bigno" aria-hidden="true">11</span><div class="cut"><div class="ph ht"><img src="img/s5.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>G</span><span>R</span><span>U</span><span>D</span><span>G</span><span>E</span></h3><span class="n">(Cepa)</span></article><article class="slide l3" data-title="Fray" aria-label="Track 12: Fray, Riveer"><span class="bigno" aria-hidden="true">12</span><div class="cut"><div class="ph ht"><img src="img/s9.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>F</span><span>R</span><span>A</span><span>Y</span></h3><span class="n">(Riveer)</span></article><article class="slide l1" data-title="Wasted" aria-label="Track 13: Wasted, Bang boy lowk funny"><span class="bigno" aria-hidden="true">13</span><div class="cut"><div class="ph ht"><img src="img/s4.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>W</span><span>A</span><span>S</span><span>T</span><span>E</span><span>D</span></h3><span class="n">(Bang boy lowk funny)</span></article><article class="slide l2" data-title="Errant" aria-label="Track 14: Errant, Cald"><span class="bigno" aria-hidden="true">14</span><div class="cut"><div class="ph ht"><img src="img/s8.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>E</span><span>R</span><span>R</span><span>A</span><span>N</span><span>T</span></h3><span class="n">(Cald)</span></article><article class="slide l3" data-title="Unfixed" aria-label="Track 15: Unfixed, Edward"><span class="bigno" aria-hidden="true">15</span><div class="cut"><div class="ph ht"><img src="img/s3.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>U</span><span>N</span><span>F</span><span>I</span><span>X</span><span>E</span><span>D</span></h3><span class="n">(Edward)</span></article><article class="slide l1" data-title="Unbound" aria-label="Track 16: Unbound, Lucian"><span class="bigno" aria-hidden="true">16</span><div class="cut"><div class="ph ht"><img src="img/s7.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>U</span><span>N</span><span>B</span><span>O</span><span>U</span><span>N</span><span>D</span></h3><span class="n">(Lucian)</span></article><article class="slide l2" data-title="Flicker" aria-label="Track 17: Flicker, Ares"><span class="bigno" aria-hidden="true">17</span><div class="cut"><div class="ph ht"><img src="img/s2.webp" alt="" loading="lazy"></div></div><svg class="thorn" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg><h3 class="t anton spray" aria-hidden="true"><span>F</span><span>L</span><span>I</span><span>C</span><span>K</span><span>E</span><span>R</span></h3><span class="n">(Ares)</span></article>
+    <div class="flash" id="flash" aria-hidden="true"></div>
+    <div class="tbar" aria-hidden="true"><span id="trk">TRK 01/17</span><span class="track"><i id="tprog"></i></span></div>
+  </section>
 
-  <!-- IN BETWEEN -->
-  <section id="between" aria-labelledby="live-h">
-    <svg class="star" style="left:-8%;top:6%;width:min(60vw,320px)" viewBox="0 0 100 100" aria-hidden="true"><use href="#spark"/></svg>
-    <div class="bt-in">
-      <figure class="poster"><img src="img/poster.webp" alt="Sevornt edit: Live from the in between" loading="lazy"></figure>
-      <div class="bt-copy">
-        <h2 class="live dirt" id="live-h" aria-label="Live from the in between"><span style="rotate:-4.7deg;translate:0 0px">L</span><span style="rotate:-2.3deg;translate:0 1px">I</span><span style="rotate:2.3deg;translate:0 -4px">V</span><span style="rotate:-8.8deg;translate:0 3px">E</span><span style="rotate:-4.3deg;translate:0 -3px"> </span><span style="rotate:8.9deg;translate:0 -0px">F</span><span style="rotate:6.1deg;translate:0 -0px">R</span><span style="rotate:2.5deg;translate:0 -3px">O</span><span style="rotate:2.4deg;translate:0 4px">M</span><br><span style="rotate:0.4deg;translate:0 2px">T</span><span style="rotate:3.1deg;translate:0 -4px">H</span><span style="rotate:4.6deg;translate:0 1px">E</span><span style="rotate:-3.6deg;translate:0 -5px"> </span><span style="rotate:6.6deg;translate:0 -0px">I</span><span style="rotate:3.9deg;translate:0 4px">N</span><br><span style="rotate:3.9deg;translate:0 4px">B</span><span style="rotate:-1.9deg;translate:0 3px">E</span><span style="rotate:-1.0deg;translate:0 4px">T</span><span style="rotate:6.8deg;translate:0 -4px">W</span><span style="rotate:-6.6deg;translate:0 -3px">E</span><span style="rotate:8.4deg;translate:0 -1px">E</span><span style="rotate:2.3deg;translate:0 -2px">N</span></h2>
-        <p class="blessed rv">So Blessed,<br>So OK,<br>&amp; 4vr Lit.</p>
-        <span class="mono rv">©sevornt · outlaw youth</span>
+  <!-- BACK OF THE TAPE -->
+  <section id="back" aria-labelledby="back-h">
+    <div class="jcard">
+      <div class="jspine"><h2 class="anton" id="back-h">sevornt</h2><span class="mono">SIDE A · 17 TRACKS</span></div>
+      <div class="jbody">
+        <div><div class="side-h">tracklist</div><ol class="tl"><li><button type="button"><span>01</span>Stray <span>(Anya)</span></button></li><li><button type="button"><span>02</span>Wired <span>(Wis)</span></button></li><li><button type="button"><span>03</span>Rogue <span>(Erome)</span></button></li><li><button type="button"><span>04</span>Restless <span>(Edrael)</span></button></li><li><button type="button"><span>05</span>Drift <span>(Ozil)</span></button></li><li><button type="button"><span>06</span>Rush <span>(Sabda)</span></button></li><li><button type="button"><span>07</span>Vex <span>(Tarung)</span></button></li><li><button type="button"><span>08</span>Rowdy <span>(Alvez)</span></button></li><li><button type="button"><span>09</span>Brat <span>(Vaggi)</span></button></li><li><button type="button"><span>10</span>Blade <span>(Hisyam)</span></button></li><li><button type="button"><span>11</span>Grudge <span>(Cepa)</span></button></li><li><button type="button"><span>12</span>Fray <span>(Riveer)</span></button></li><li><button type="button"><span>13</span>Wasted <span>(Bang boy lowk funny)</span></button></li><li><button type="button"><span>14</span>Errant <span>(Cald)</span></button></li><li><button type="button"><span>15</span>Unfixed <span>(Edward)</span></button></li><li><button type="button"><span>16</span>Unbound <span>(Lucian)</span></button></li><li><button type="button"><span>17</span>Flicker <span>(Ares)</span></button></li></ol></div>
+        <div class="liner">
+          <div class="side-h">liner notes</div>
+          <p class="live">LIVE FROM THE IN BETWEEN</p>
+          <p class="blessed">So Blessed,<br>So OK,<br>&amp; 4vr Lit.</p>
+          <img src="img/poster.webp" alt="Sevornt edit: Live from the in between" loading="lazy">
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- ROSTER -->
-  <section id="roster" aria-labelledby="roster-h">
-    <div class="r-head">
-      <h2 class="anton glitch rv" id="roster-h" data-t="outlaw youth">outlaw youth</h2>
-      <span class="mono rv">the roster · 17 of us</span>
-    </div>
-    <div class="cards"><button class="card" type="button" aria-label="Stray, Anya"><div class="cut"><div class="ph ht limeflash"><img src="img/s1.webp" alt="" loading="lazy"></div></div><span class="t anton">Stray</span><span class="n">(Anya)</span></button><button class="card" type="button" aria-label="Wired, Wis"><div class="cut"><div class="ph ht limeflash"><img src="img/s2.webp" alt="" loading="lazy"></div></div><span class="t anton">Wired</span><span class="n">(Wis)</span></button><button class="card" type="button" aria-label="Rogue, Erome"><div class="cut"><div class="ph ht limeflash"><img src="img/s3.webp" alt="" loading="lazy"></div></div><span class="t anton">Rogue</span><span class="n">(Erome)</span></button><button class="card" type="button" aria-label="Restless, Edrael"><div class="cut"><div class="ph ht limeflash"><img src="img/s4.webp" alt="" loading="lazy"></div></div><span class="t anton">Restless</span><span class="n">(Edrael)</span></button><button class="card" type="button" aria-label="Drift, Ozil"><div class="cut"><div class="ph ht limeflash"><img src="img/s5.webp" alt="" loading="lazy"></div></div><span class="t anton">Drift</span><span class="n">(Ozil)</span></button><button class="card" type="button" aria-label="Rush, Sabda"><div class="cut"><div class="ph ht limeflash"><img src="img/s6.webp" alt="" loading="lazy"></div></div><span class="t anton">Rush</span><span class="n">(Sabda)</span></button><button class="card" type="button" aria-label="Vex, Tarung"><div class="cut"><div class="ph ht limeflash"><img src="img/s7.webp" alt="" loading="lazy"></div></div><span class="t anton">Vex</span><span class="n">(Tarung)</span></button><button class="card" type="button" aria-label="Rowdy, Alvez"><div class="cut"><div class="ph ht limeflash"><img src="img/s8.webp" alt="" loading="lazy"></div></div><span class="t anton">Rowdy</span><span class="n">(Alvez)</span></button><button class="card" type="button" aria-label="Brat, Vaggi"><div class="cut"><div class="ph ht limeflash"><img src="img/s9.webp" alt="" loading="lazy"></div></div><span class="t anton">Brat</span><span class="n">(Vaggi)</span></button><button class="card" type="button" aria-label="Blade, Hisyam"><div class="cut"><div class="ph ht limeflash"><img src="img/s1.webp" alt="" loading="lazy"></div></div><span class="t anton">Blade</span><span class="n">(Hisyam)</span></button><button class="card" type="button" aria-label="Grudge, Cepa"><div class="cut"><div class="ph ht limeflash"><img src="img/s2.webp" alt="" loading="lazy"></div></div><span class="t anton">Grudge</span><span class="n">(Cepa)</span></button><button class="card" type="button" aria-label="Fray, Riveer"><div class="cut"><div class="ph ht limeflash"><img src="img/s3.webp" alt="" loading="lazy"></div></div><span class="t anton">Fray</span><span class="n">(Riveer)</span></button><button class="card" type="button" aria-label="Wasted, Bang boy lowk funny"><div class="cut"><div class="ph ht limeflash"><img src="img/s4.webp" alt="" loading="lazy"></div></div><span class="t anton">Wasted</span><span class="n">(Bang boy lowk funny)</span></button><button class="card" type="button" aria-label="Errant, Cald"><div class="cut"><div class="ph ht limeflash"><img src="img/s5.webp" alt="" loading="lazy"></div></div><span class="t anton">Errant</span><span class="n">(Cald)</span></button><button class="card" type="button" aria-label="Unfixed, Edward"><div class="cut"><div class="ph ht limeflash"><img src="img/s6.webp" alt="" loading="lazy"></div></div><span class="t anton">Unfixed</span><span class="n">(Edward)</span></button><button class="card" type="button" aria-label="Unbound, Lucian"><div class="cut"><div class="ph ht limeflash"><img src="img/s7.webp" alt="" loading="lazy"></div></div><span class="t anton">Unbound</span><span class="n">(Lucian)</span></button><button class="card" type="button" aria-label="Flicker, Ares"><div class="cut"><div class="ph ht limeflash"><img src="img/s8.webp" alt="" loading="lazy"></div></div><span class="t anton">Flicker</span><span class="n">(Ares)</span></button></div>
-  </section>
-
-  <!-- OUTRO -->
-  <section id="outro" aria-label="©SEVORNT">
-    <div class="cut rv"><div class="ph"><img src="img/cover.webp" alt="Sevornt edit: ©SEVORNT, outlaw youth" loading="lazy"></div></div>
-    <div class="anton spray glitch rv" data-t="©sevornt">©sevornt</div>
-    <div class="mono rv">live from the in between</div>
+    <div class="end"><div class="anton">outlaw youth</div><span class="mono">©sevornt</span></div>
   </section>
 </main>
 
@@ -220,79 +233,98 @@ if (!reduce) {
   lenis.stop();
 }
 
-/* ---------- music: starts on the "tap to enter" tap ---------- */
-(function music() {
-  const song = $("#song"), box = $("#player"), btn = $("#playBtn"), icon = btn.querySelector(".pp use");
-  song.volume = 0.8;
-  const setUI = on => { box.classList.toggle("on", on); btn.setAttribute("aria-pressed", on); icon.setAttribute("href", on ? "#i-pause" : "#i-play");
-    btn.setAttribute("aria-label", (on ? "Pause" : "Play") + " Shut It Down by Drake and The-Dream"); };
-  song.addEventListener("play", () => setUI(true));
-  song.addEventListener("pause", () => setUI(false));
-  window.startSong = () => song.play().catch(() => {});
-  btn.addEventListener("click", () => (song.paused ? window.startSong() : song.pause()));
-})();
-
-/* ---------- intro: the tag sprays on, barbed wire draws, tap to enter ---------- */
-function splats(host, n) {
-  for (let i = 0; i < n; i++) {
-    const d = document.createElement("span"); d.className = "splat";
-    const s = rnd(3, 14); d.style.cssText = `width:${s}px;height:${s}px;left:${rnd(15, 85)}%;top:${rnd(30, 62)}%`;
-    host.appendChild(d);
-    gsap.to(d, { opacity: rnd(0.5, 1), scale: rnd(0.6, 1.4), duration: 0.15, delay: rnd(0.2, 0.7) });
-  }
+/* ---------- music ---------- */
+const song = $("#song");
+song.volume = 0.8;
+let reels = null;
+function setUI(on) {
+  document.body.classList.toggle("player-on", on);
+  $("#playBtn").setAttribute("aria-pressed", on);
+  $("#ppTxt").textContent = on ? "PAUSE" : "PLAY";
+  $("#playBtn").setAttribute("aria-label", (on ? "Pause" : "Play") + " Shut It Down by Drake and The-Dream");
 }
-function heroIn() {
+song.addEventListener("play", () => setUI(true));
+song.addEventListener("pause", () => setUI(false));
+$("#playBtn").addEventListener("click", () => (song.paused ? song.play().catch(() => {}) : song.pause()));
+
+/* ---------- intro: insert the tape, press play ---------- */
+function sideAIn() {
   const tl = gsap.timeline();
   if (reduce) return tl;
-  tl.from(".sw", { scale: 0, transformOrigin: "50% 50%", rotate: () => rnd(-40, 40), duration: 0.9, ease: "back.out(1.6)", stagger: 0.1 })
-    .from("#hero .cut", { scale: 1.4, opacity: 0, rotate: 12, duration: 0.5, ease: "power4.in" }, 0.2)
-    .to("#hero", { x: 6, duration: 0.05, yoyo: true, repeat: 3 }, 0.7)
-    .from(".logo", { opacity: 0, filter: "blur(18px)", scale: 1.25, duration: 0.7, ease: "power2.out" }, 0.6)
-    .from(".thorn", { opacity: 0, scale: 0, duration: 0.5, ease: "back.out(2.5)", stagger: 0.1 }, 0.8);
+  tl.from(".diag", { clipPath: "polygon(0 0,0 0,0 100%,0 100%)", duration: 0.8, ease: "power4.inOut" })
+    .from(".vert", { yPercent: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.2)
+    .from(".bl", { scale: 0, transformOrigin: "50% 50%", rotate: -60, duration: 0.9, ease: "back.out(1.7)" }, 0.3)
+    .from(".sa-photo", { scale: 1.5, opacity: 0, rotate: 18, duration: 0.45, ease: "power4.in" }, 0.45)
+    .from(".sa-photo2", { scale: 1.6, opacity: 0, rotate: -24, duration: 0.45, ease: "power4.in" }, 0.6)
+    .to("#sideA", { x: 6, duration: 0.05, yoyo: true, repeat: 3 }, 0.95)
+    .from(".strip", { xPercent: -110, duration: 0.7, ease: "power3.out" }, 0.8)
+    .from(".sa-logo", { opacity: 0, filter: "blur(16px)", scale: 1.3, duration: 0.6, ease: "power2.out" }, 1)
+    .from(".sa-side,.scrollcue", { opacity: 0, duration: 0.4 }, 1.2);
   return tl;
 }
 const loaded = new Promise(r => (document.readyState === "complete" ? r() : addEventListener("load", r)));
 Promise.race([loaded, new Promise(r => setTimeout(r, 5000))]).then(() => {
   const intro = $("#intro"), enter = $("#enter");
   const done = () => { intro.remove(); lenis && lenis.start(); ScrollTrigger.refresh(); };
-  const ready = () => { enter.classList.add("ready"); enter.focus({ preventScroll: true }); };
+  enter.classList.add("ready"); enter.focus({ preventScroll: true });
+  if (!reduce) gsap.from("#tape", { y: 40, opacity: 0, rotate: -6, duration: 0.8, ease: "back.out(1.6)" });
   enter.addEventListener("click", () => {
-    window.startSong();
+    song.play().catch(() => {});
     enter.classList.remove("ready");
     if (reduce) return done();
+    // reels spin up, the tape drops into the deck, the deck lid wipes away
+    gsap.to(".reel", { rotate: 720, duration: 1.4, ease: "power2.in" });
     gsap.timeline({ onComplete: done })
-      .to(intro, { clipPath: "polygon(0 0,100% 0,100% 0,0 0)", duration: 0.7, ease: "power4.inOut" })
-      .add(heroIn(), "-=0.3");
+      .to("#tape", { y: -14, duration: 0.15, ease: "power2.out" })
+      .to("#tape", { y: "60vh", scale: 0.8, duration: 0.6, ease: "power3.in" }, "+=0.35")
+      .to(intro, { clipPath: "inset(0 0 100% 0)", duration: 0.7, ease: "power4.inOut" }, "-=0.15")
+      .add(sideAIn(), "-=0.35");
+    gsap.set(intro, { clipPath: "inset(0 0 0% 0)" });
   }, { once: true });
-  if (reduce) return ready();
-  gsap.set(intro, { clipPath: "polygon(0 0,100% 0,100% 100%,0 100%)" });
-  gsap.timeline({ onComplete: ready })
-    .to("#wire1", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" })
-    .from(".barb", { scale: 0, transformOrigin: "50% 50%", duration: 0.3, stagger: 0.04, ease: "back.out(3)" }, "-=0.5")
-    .from("#iLogo", { opacity: 0, filter: "blur(24px)", scale: 1.3, duration: 0.8, ease: "power2.out", onStart: () => splats(intro, 26) }, 0.2)
-    .from("#intro .mono", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2");
 });
 
-/* ---------- scroll motion ---------- */
+/* ---------- side A parallax ---------- */
 if (!reduce) {
-  gsap.to("#orbitG", { rotate: 360, transformOrigin: "200px 200px", duration: 26, ease: "none", repeat: -1 });
-  gsap.to(".sw", { y: (i) => (i % 2 ? -18 : 14), rotate: (i) => (i % 2 ? 4 : -5), duration: 3.4, yoyo: true, repeat: -1, ease: "sine.inOut", transformOrigin: "50% 50%" });
-  gsap.to(".stage", { yPercent: 18, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
-  /* ticker: drifts on its own, faster while you scroll */
-  const tick = gsap.to("#tick", { xPercent: -50, duration: 22, ease: "none", repeat: -1 });
-  ScrollTrigger.create({ onUpdate: s => gsap.to(tick, { timeScale: 1 + Math.min(6, Math.abs(s.getVelocity()) / 400), duration: 0.2, overwrite: true, onComplete: () => gsap.to(tick, { timeScale: 1, duration: 1 }) }) });
-
-  $$(".rv").forEach(el => gsap.from(el, { opacity: 0, y: 40, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none reverse" } }));
-  /* LIVE FROM THE IN BETWEEN: letters fall into their crooked spots */
-  gsap.from(".live span", { y: -80, opacity: 0, rotate: () => rnd(-50, 50), duration: 0.7, ease: "bounce.out", stagger: 0.03, scrollTrigger: { trigger: ".live", start: "top 80%" } });
-  gsap.to(".star", { rotate: 90, scale: 1.2, ease: "none", scrollTrigger: { trigger: "#between", start: "top bottom", end: "bottom top", scrub: 1 } });
-  gsap.from(".poster", { rotate: -12, y: 80, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".poster", start: "top 85%" } });
-
-  /* roster cards slam down like stickers */
-  ScrollTrigger.batch(".card", { start: "top 92%", once: true,
-    onEnter: els => gsap.from(els, { scale: 1.5, opacity: 0, rotate: () => rnd(-15, 15), duration: 0.45, ease: "power4.in", stagger: 0.08 }) });
+  gsap.to(".sa-photo", { yPercent: -20, rotate: 9, ease: "none", scrollTrigger: { trigger: "#sideA", start: "top top", end: "bottom top", scrub: true } });
+  gsap.to(".strip", { xPercent: -14, ease: "none", scrollTrigger: { trigger: "#sideA", start: "top top", end: "bottom top", scrub: true } });
+  gsap.to(".vert", { yPercent: 30, ease: "none", scrollTrigger: { trigger: "#sideA", start: "top top", end: "bottom top", scrub: true } });
 }
-$$(".card").forEach(c => c.addEventListener("click", () => { c.classList.remove("zap"); void c.offsetWidth; c.classList.add("zap"); setTimeout(() => c.classList.remove("zap"), 700); }));
+
+/* ---------- tracks: scroll skips from track to track ---------- */
+const slides = $$(".slide"), N = slides.length;
+let cur = -1, tracksST = null;
+function show(i, dir = 1) {
+  if (i === cur) return;
+  const prev = slides[cur], next = slides[i];
+  $("#trk").textContent = `TRK ${String(i + 1).padStart(2, "0")}/${N}`;
+  $("#tprog").style.setProperty("--p", ((i + 1) / N).toFixed(3));
+  $("#hudLeft").textContent = `©SEVORNT · ${next.dataset.title.toUpperCase()}`;
+  cur = i;
+  if (reduce) { slides.forEach(s => s.classList.toggle("on", s === next)); return; }
+  if (prev) gsap.to(prev.querySelectorAll(".cut,.t,.n,.thorn,.bigno"), { x: -dir * 80, opacity: 0, duration: 0.25, ease: "power2.in", overwrite: true,
+    onComplete: () => { prev.classList.remove("on"); gsap.set(prev.querySelectorAll(".cut,.t,.n,.thorn,.bigno"), { x: 0, opacity: 1 }); } });
+  next.classList.add("on");
+  gsap.fromTo("#flash", { opacity: 0.9 }, { opacity: 0, duration: 0.3, ease: "steps(3)" });
+  gsap.fromTo(next.querySelector(".cut"), { x: dir * 140, rotate: dir * 14, opacity: 0, scale: 1.15 }, { x: 0, rotate: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power4.out", overwrite: true });
+  gsap.fromTo(next.querySelectorAll(".t span"), { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out", stagger: 0.03, overwrite: true });
+  gsap.fromTo(next.querySelectorAll(".n,.thorn"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", delay: 0.15, overwrite: true });
+  gsap.fromTo(next.querySelector(".bigno"), { opacity: 0, x: dir * 60 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out", overwrite: true });
+}
+show(0);
+if (!reduce) {
+  tracksST = ScrollTrigger.create({
+    trigger: "#tracks", start: "top top", end: () => "+=" + innerHeight * (N - 1) * 0.75, pin: true,
+    onUpdate: s => { const i = Math.min(N - 1, Math.round(s.progress * (N - 1))); show(i, i > cur ? 1 : -1); },
+  });
+}
+/* the back of the tape doubles as a track selector */
+$$(".tl button").forEach((b, i) => b.addEventListener("click", () => {
+  if (!tracksST) return show(i);
+  const y = tracksST.start + (tracksST.end - tracksST.start) * (i / (N - 1));
+  lenis ? lenis.scrollTo(y, { duration: 1.6 }) : scrollTo(0, y);
+}));
+
+if (!reduce) gsap.from(".jcard", { y: 80, rotate: -3, opacity: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: ".jcard", start: "top 85%" } });
 document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
 </script>
 </body>
