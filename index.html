@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sevornt</title>
+<meta name="description" content="©SEVORNT. Outlaw youth, live from the in between.">
+<meta name="theme-color" content="#0e0f0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230e0f0c'/%3E%3Ctext x='16' y='24' font-size='22' font-family='Impact,sans-serif' text-anchor='middle' fill='%23c8f031'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;800&family=Rubik+Dirt&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0e0f0c; --concrete:#24251f; --lime:#c8f031; --lime-d:#9fc21c; --paper:#efede6; --red:#c8182a; --white:#f6f6f1; --gray:#8d8e86;
+  --gutter:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--black);-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--black);color:var(--white);font-family:Archivo,system-ui,sans-serif;overflow-x:hidden;min-height:100dvh}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.ic{width:1em;height:1em;flex:none}
+/* photocopy grain over everything */
+body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.2;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .4s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-2%,3%)}66%{transform:translate(3%,-2%)}}
+
+/* ---------- sevornt visual language ---------- */
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.88;text-transform:uppercase}
+.mono{font-family:"Space Mono",monospace}
+.dirt{font-family:"Rubik Dirt",Anton,sans-serif}
+.spray{color:var(--lime);text-shadow:0 0 18px rgba(200,240,49,.55),0 0 2px var(--lime)}
+.cut{position:relative;background:#fff;padding:7px;clip-path:polygon(3% 2%,22% 0,48% 3%,74% 0,97% 3%,100% 28%,97% 55%,100% 82%,96% 99%,70% 97%,44% 100%,18% 97%,1% 100%,3% 74%,0 46%,2% 20%)}
+.cut .ph{position:relative;width:100%;height:100%;overflow:hidden;background:#333;clip-path:polygon(2% 1%,30% 0,60% 2%,99% 0,100% 40%,98% 70%,100% 99%,60% 100%,30% 98%,0 100%,1% 60%,0 30%)}
+.cut img{width:100%;height:100%;object-fit:cover}
+.ht::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,0,0,.32) 1px,transparent 1.7px);background-size:4px 4px;mix-blend-mode:multiply}
+.limeflash::before{content:"";position:absolute;inset:0;z-index:1;background:var(--lime);mix-blend-mode:multiply;opacity:0;transition:opacity .25s}
+.jit{animation:jit .5s steps(1) infinite}
+@keyframes jit{0%{transform:translate(0,0)}33%{transform:translate(1px,-1px) rotate(.3deg)}66%{transform:translate(-1px,1px) rotate(-.3deg)}}
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none}
+.glitch::before{color:#fff;clip-path:inset(0 0 70% 0);animation:gl1 3.2s steps(1) infinite;opacity:.8}
+.glitch::after{color:var(--lime-d);clip-path:inset(65% 0 0 0);animation:gl2 2.7s steps(1) infinite}
+@keyframes gl1{0%,92%,100%{transform:none}93%{transform:translate(-6px,1px)}96%{transform:translate(5px,-2px)}}
+@keyframes gl2{0%,88%,100%{transform:none}89%{transform:translate(7px,0)}94%{transform:translate(-4px,2px)}}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:var(--black);font-family:Anton;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;padding:12px 24px;text-decoration:none;
+  clip-path:polygon(0 8%,96% 0,100% 88%,4% 100%);transition:translate .15s}
+.btn:active{translate:2px 3px}
+.btn:focus-visible,.card:focus-visible,.play-btn:focus-visible{outline:3px solid var(--white);outline-offset:4px}
+
+/* ---------- intro ---------- */
+#intro{position:fixed;inset:0;z-index:97;background:var(--black);display:grid;place-items:center;align-content:center;gap:18px;text-align:center;padding:var(--gutter)}
+#intro .anton{font-size:clamp(4.6rem,24vw,10rem)}
+#intro .mono{font-size:.9rem;color:var(--gray);letter-spacing:.2em}
+.splat{position:absolute;border-radius:50%;background:var(--lime);filter:blur(1px);opacity:0}
+#enter{opacity:0;pointer-events:none}
+#enter.ready{opacity:1;pointer-events:auto;animation:pulse 1.2s steps(2) infinite}
+@keyframes pulse{50%{background:var(--white)}}
+.wire{position:absolute;left:0;width:100%;height:60px;overflow:visible;pointer-events:none}
+
+/* ---------- hero ---------- */
+#hero{position:relative;min-height:100dvh;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(ellipse at 30% 20%,#3a3b35 0,transparent 55%),radial-gradient(ellipse at 80% 90%,#30312b 0,transparent 50%),var(--concrete)}
+#hero .scratch{position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(97deg,transparent 0 40px,rgba(255,255,255,.05) 40px 41px),repeating-linear-gradient(8deg,transparent 0 120px,rgba(0,0,0,.25) 120px 124px)}
+.swoosh{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.stage{position:relative;width:min(88vw,520px);aspect-ratio:1;display:grid;place-items:center}
+.stage .cut{width:58%;aspect-ratio:3/4;rotate:-3deg;z-index:2}
+.orbit{position:absolute;inset:0;z-index:3;pointer-events:none}
+.orbit text{font-family:Anton;font-size:30px;letter-spacing:6px;fill:var(--lime)}
+.logo{position:absolute;left:50%;top:62%;translate:-50% 0;z-index:4;font-size:clamp(4rem,19vw,8.4rem);white-space:nowrap}
+.thorn{position:absolute;z-index:3;width:clamp(40px,10vw,70px);color:var(--lime)}
+.hero-tag{position:absolute;left:var(--gutter);top:max(20px,3dvh);font-size:.82rem;color:var(--gray);letter-spacing:.15em}
+
+/* ---------- ticker ---------- */
+.ticker{position:relative;background:var(--lime);color:var(--black);rotate:-2deg;margin:-14px -10px 0;padding:12px 0;overflow:hidden;z-index:5}
+.ticker .row{display:flex;gap:30px;white-space:nowrap;width:max-content;font-size:clamp(1.4rem,6vw,2.4rem)}
+.ticker .row span{display:inline-flex;align-items:center;gap:30px}
+.ticker .ic{font-size:.8em}
+
+/* ---------- in between (paper) ---------- */
+#between{position:relative;background:var(--paper);color:var(--black);padding:110px var(--gutter) 100px;overflow:hidden}
+.bt-in{position:relative;max-width:1100px;margin:0 auto;display:grid;gap:40px;align-items:center}
+.poster{position:relative;width:min(84vw,420px);justify-self:center;rotate:2deg;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.poster img{width:100%}
+.live{font-size:clamp(2.8rem,12vw,5.6rem);color:var(--red);line-height:.95;filter:blur(.4px)}
+.live span{display:inline-block}
+.star{position:absolute;color:var(--red);opacity:.6;filter:blur(3px)}
+.blessed{font-family:Archivo;font-weight:500;color:var(--red);font-size:clamp(1.5rem,6vw,2.4rem);line-height:1.15;margin-top:26px}
+.bt-copy .mono{display:block;margin-top:22px;color:#55564f;font-size:.9rem}
+@media (min-width:900px){ .bt-in{grid-template-columns:1fr 1fr} }
+
+/* ---------- roster ---------- */
+#roster{position:relative;padding:100px var(--gutter) 120px;background:var(--black)}
+.r-head{text-align:center;position:relative}
+.r-head .anton{font-size:clamp(3.6rem,17vw,9rem);color:transparent;-webkit-text-stroke:2px var(--lime)}
+.r-head .mono{display:block;color:var(--gray);margin-top:10px;letter-spacing:.15em;font-size:.9rem}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:40px 16px;max-width:1150px;margin:54px auto 0}
+.card{position:relative;text-align:left;display:block;width:100%}
+.card .cut{aspect-ratio:3/4;transition:rotate .3s}
+.card:nth-child(odd) .cut{rotate:-2.5deg} .card:nth-child(even) .cut{rotate:2deg}
+.card .t{display:block;font-size:clamp(2.2rem,10vw,3.6rem);color:var(--lime);margin-top:12px;line-height:.9}
+.card .n{display:block;font-family:"Space Mono";font-size:.92rem;color:var(--white);margin-top:4px;line-height:1.3}
+.card:hover .limeflash::before,.card.zap .limeflash::before{opacity:.85}
+.card.zap{animation:shake .35s steps(3)}
+@keyframes shake{33%{translate:-4px 2px}66%{translate:4px -2px}}
+@media (min-width:760px){ .cards{grid-template-columns:repeat(4,1fr);gap:56px 28px} }
+
+/* ---------- outro ---------- */
+#outro{position:relative;min-height:90dvh;display:grid;place-items:center;align-content:center;text-align:center;gap:16px;padding:80px var(--gutter) 140px;overflow:hidden;background:var(--concrete)}
+#outro .cut{width:min(72vw,360px);aspect-ratio:1;rotate:3deg}
+#outro .anton{font-size:clamp(3.6rem,16vw,7rem)}
+#outro .mono{color:var(--gray);letter-spacing:.2em}
+
+/* ---------- player ---------- */
+.player{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));z-index:95}
+.play-btn{display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;background:var(--black);color:var(--white);border:2px solid var(--lime);clip-path:polygon(0 0,100% 4%,98% 100%,2% 96%)}
+.play-btn .rec{font-size:34px;color:var(--lime)}
+.player.on .rec{animation:spin 1.8s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+.play-btn b{display:block;font-family:Anton;font-weight:400;font-size:.95rem;letter-spacing:.05em;text-align:left;line-height:1.1}
+.play-btn small{display:block;font-family:"Space Mono";font-size:.68rem;color:var(--gray);text-align:left}
+.play-btn .pp{font-size:18px;color:var(--lime)}
+
+@media (prefers-reduced-motion:reduce){ body::after,.jit,.glitch::before,.glitch::after,.player.on .rec,#enter.ready{animation:none} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-fire" viewBox="0 0 256 256" fill="currentColor"><path d="M143.38,17.85a8,8,0,0,0-12.63,3.41l-22,60.41L84.59,58.26a8,8,0,0,0-11.93.89C51,87.53,40,116.08,40,144a88,88,0,0,0,176,0C216,84.55,165.21,36,143.38,17.85Zm40.51,135.49a57.6,57.6,0,0,1-46.56,46.55A7.65,7.65,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256" fill="currentColor"><path d="M213.85,125.46l-112,120a8,8,0,0,1-13.69-7l14.66-73.33L45.19,143.49a8,8,0,0,1-3-13l112-120a8,8,0,0,1,13.69,7L153.18,90.9l57.63,21.61a8,8,0,0,1,3,12.95Z"/></symbol><symbol id="i-pause" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z"/></symbol><symbol id="i-play" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"/></symbol><symbol id="i-skull" viewBox="0 0 256 256" fill="currentColor"><path d="M128,16C70.65,16,24,60.86,24,116c0,34.1,18.27,66,48,84.28V216a16,16,0,0,0,16,16h8a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h16a4,4,0,0,0,4-4V200.27a8.17,8.17,0,0,1,7.47-8.25,8,8,0,0,1,8.53,8v28a4,4,0,0,0,4,4h8a16,16,0,0,0,16-16V200.28C213.73,182,232,150.1,232,116,232,60.86,185.35,16,128,16ZM92,152a20,20,0,1,1,20-20A20,20,0,0,1,92,152Zm72,0a20,20,0,1,1,20-20A20,20,0,0,1,164,152Z"/></symbol><symbol id="i-spray-bottle" viewBox="0 0 256 256" fill="currentColor"><path d="M200,80a8,8,0,0,0,8-8,56.06,56.06,0,0,0-56-56H80A16,16,0,0,0,64,32V80a24,24,0,0,1-24,24,8,8,0,0,0,0,16A40,40,0,0,0,80,80h32v24.62a23.87,23.87,0,0,1-9,18.74L87,136.15a39.79,39.79,0,0,0-15,31.23V224a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V211.47A270.88,270.88,0,0,0,174,80ZM80,32h72a40.08,40.08,0,0,1,39.2,32H80Z"/></symbol><symbol id="i-star-four" viewBox="0 0 256 256" fill="currentColor"><path d="M240,128a15.79,15.79,0,0,1-10.5,15l-63.44,23.07L143,229.5a16,16,0,0,1-30,0L89.94,166.06,26.5,143a16,16,0,0,1,0-30L89.94,89.94,113,26.5a16,16,0,0,1,30,0l23.07,63.44L229.5,113A15.79,15.79,0,0,1,240,128Z"/></symbol><symbol id="i-vinyl-record" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM72,128a8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16A56.06,56.06,0,0,0,72,128Zm32,0a24,24,0,1,1,24,24A24,24,0,0,1,104,128Zm24,72a8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0A72.08,72.08,0,0,1,128,200Z"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="thorn" viewBox="0 0 60 120"><path fill="currentColor" d="M30 0 C 34 20, 44 26, 58 22 C 46 32, 40 40, 42 56 C 50 52, 56 54, 60 60 C 48 62, 40 70, 38 86 C 44 90, 46 98, 44 108 C 38 100, 32 98, 30 120 C 28 98, 22 100, 16 108 C 14 98, 16 90, 22 86 C 20 70, 12 62, 0 60 C 4 54, 10 52, 18 56 C 20 40, 14 32, 2 22 C 16 26, 26 20, 30 0Z"/></symbol>
+  <symbol id="spark" viewBox="0 0 100 100"><path fill="currentColor" d="M50 0 C 54 34, 66 46, 100 50 C 66 54, 54 66, 50 100 C 46 66, 34 54, 0 50 C 34 46, 46 34, 50 0Z"/></symbol>
+</defs></svg>
+
+<div id="intro">
+  <svg class="wire" style="top:18%" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path id="wire1" d="M0 30 C 60 10, 100 50, 160 30 S 260 10, 320 30 S 380 50, 400 30" fill="none" stroke="#c8f031" stroke-width="2.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><g class="barb" transform="translate(25 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(70 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(115 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(160 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(205 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(250 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(295 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(340 38)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g><g class="barb" transform="translate(385 22)"><path d="M-7 -7 L7 7 M-7 7 L7 -7" stroke="#c8f031" stroke-width="2.5"/></g></svg>
+  <div class="anton spray glitch" data-t="sevornt" id="iLogo">sevornt</div>
+  <div class="mono">outlaw youth</div>
+  <button class="btn" id="enter" type="button"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>tap to enter</button>
+</div>
+
+<div class="player" id="player">
+  <audio id="song" src="audio/shut-it-down.mp3" preload="auto" loop></audio>
+  <button class="play-btn" id="playBtn" type="button" aria-pressed="false" aria-label="Play Shut It Down by Drake and The-Dream">
+    <svg class="ic rec" aria-hidden="true"><use href="#i-vinyl-record"/></svg><span><b>SHUT IT DOWN</b><small>Drake &amp; The-Dream</small></span><svg class="ic pp" aria-hidden="true"><use href="#i-play"/></svg>
+  </button>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="scratch" aria-hidden="true"></div>
+    <span class="hero-tag mono">©SEVORNT</span>
+    <svg class="swoosh" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="sw" fill="#c8f031" d="M70 120 C 20 220, 40 360, 110 330 C 170 300, 120 200, 160 140 C 190 95, 140 60, 70 120Z"/>
+      <path class="sw" fill="#c8f031" d="M300 40 C 350 60, 340 120, 300 170 C 270 205, 250 250, 262 300 C 230 250, 240 190, 272 140 C 296 102, 286 70, 300 40Z"/>
+      <path class="sw" fill="#c8f031" d="M40 520 C 90 470, 160 500, 140 560 C 125 605, 70 620, 52 670 C 30 620, 10 560, 40 520Z" opacity=".85"/>
+    </svg>
+    <div class="stage">
+      <svg class="orbit" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="circ" d="M200 200 m -170 0 a 170 170 0 1 1 340 0 a 170 170 0 1 1 -340 0"/></defs>
+        <g id="orbitG"><text><textPath href="#circ">OUTLAW · YOUTH · OUTLAW · YOUTH · OUTLAW · YOUTH ·</textPath></text></g></svg>
+      <div class="cut h-in"><div class="ph ht jit"><img src="img/s6.webp" alt="Seonghyeon, the Sevornt muse"></div></div>
+      <svg class="thorn h-in" style="left:4%;top:56%;rotate:-20deg" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg>
+      <svg class="thorn h-in" style="right:6%;top:66%;rotate:24deg;width:clamp(30px,8vw,52px)" viewBox="0 0 60 120" aria-hidden="true"><use href="#thorn"/></svg>
+      <h1 class="logo anton spray glitch h-in" data-t="©sevornt">©sevornt</h1>
+    </div>
+  </section>
+
+  <div class="ticker anton" aria-hidden="true"><div class="row" id="tick"><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span><span>SO BLESSED, SO OK, &amp; 4VR LIT. <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg> OUTLAW YOUTH <svg class="ic" viewBox="0 0 100 100"><use href="#spark"/></svg></span></div></div>
+
+  <!-- IN BETWEEN -->
+  <section id="between" aria-labelledby="live-h">
+    <svg class="star" style="left:-8%;top:6%;width:min(60vw,320px)" viewBox="0 0 100 100" aria-hidden="true"><use href="#spark"/></svg>
+    <div class="bt-in">
+      <figure class="poster"><img src="img/poster.webp" alt="Sevornt edit: Live from the in between" loading="lazy"></figure>
+      <div class="bt-copy">
+        <h2 class="live dirt" id="live-h" aria-label="Live from the in between"><span style="rotate:-4.7deg;translate:0 0px">L</span><span style="rotate:-2.3deg;translate:0 1px">I</span><span style="rotate:2.3deg;translate:0 -4px">V</span><span style="rotate:-8.8deg;translate:0 3px">E</span><span style="rotate:-4.3deg;translate:0 -3px"> </span><span style="rotate:8.9deg;translate:0 -0px">F</span><span style="rotate:6.1deg;translate:0 -0px">R</span><span style="rotate:2.5deg;translate:0 -3px">O</span><span style="rotate:2.4deg;translate:0 4px">M</span><br><span style="rotate:0.4deg;translate:0 2px">T</span><span style="rotate:3.1deg;translate:0 -4px">H</span><span style="rotate:4.6deg;translate:0 1px">E</span><span style="rotate:-3.6deg;translate:0 -5px"> </span><span style="rotate:6.6deg;translate:0 -0px">I</span><span style="rotate:3.9deg;translate:0 4px">N</span><br><span style="rotate:3.9deg;translate:0 4px">B</span><span style="rotate:-1.9deg;translate:0 3px">E</span><span style="rotate:-1.0deg;translate:0 4px">T</span><span style="rotate:6.8deg;translate:0 -4px">W</span><span style="rotate:-6.6deg;translate:0 -3px">E</span><span style="rotate:8.4deg;translate:0 -1px">E</span><span style="rotate:2.3deg;translate:0 -2px">N</span></h2>
+        <p class="blessed rv">So Blessed,<br>So OK,<br>&amp; 4vr Lit.</p>
+        <span class="mono rv">©sevornt · outlaw youth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROSTER -->
+  <section id="roster" aria-labelledby="roster-h">
+    <div class="r-head">
+      <h2 class="anton glitch rv" id="roster-h" data-t="outlaw youth">outlaw youth</h2>
+      <span class="mono rv">the roster · 17 of us</span>
+    </div>
+    <div class="cards"><button class="card" type="button" aria-label="Stray, Anya"><div class="cut"><div class="ph ht limeflash"><img src="img/s1.webp" alt="" loading="lazy"></div></div><span class="t anton">Stray</span><span class="n">(Anya)</span></button><button class="card" type="button" aria-label="Wired, Wis"><div class="cut"><div class="ph ht limeflash"><img src="img/s2.webp" alt="" loading="lazy"></div></div><span class="t anton">Wired</span><span class="n">(Wis)</span></button><button class="card" type="button" aria-label="Rogue, Erome"><div class="cut"><div class="ph ht limeflash"><img src="img/s3.webp" alt="" loading="lazy"></div></div><span class="t anton">Rogue</span><span class="n">(Erome)</span></button><button class="card" type="button" aria-label="Restless, Edrael"><div class="cut"><div class="ph ht limeflash"><img src="img/s4.webp" alt="" loading="lazy"></div></div><span class="t anton">Restless</span><span class="n">(Edrael)</span></button><button class="card" type="button" aria-label="Drift, Ozil"><div class="cut"><div class="ph ht limeflash"><img src="img/s5.webp" alt="" loading="lazy"></div></div><span class="t anton">Drift</span><span class="n">(Ozil)</span></button><button class="card" type="button" aria-label="Rush, Sabda"><div class="cut"><div class="ph ht limeflash"><img src="img/s6.webp" alt="" loading="lazy"></div></div><span class="t anton">Rush</span><span class="n">(Sabda)</span></button><button class="card" type="button" aria-label="Vex, Tarung"><div class="cut"><div class="ph ht limeflash"><img src="img/s7.webp" alt="" loading="lazy"></div></div><span class="t anton">Vex</span><span class="n">(Tarung)</span></button><button class="card" type="button" aria-label="Rowdy, Alvez"><div class="cut"><div class="ph ht limeflash"><img src="img/s8.webp" alt="" loading="lazy"></div></div><span class="t anton">Rowdy</span><span class="n">(Alvez)</span></button><button class="card" type="button" aria-label="Brat, Vaggi"><div class="cut"><div class="ph ht limeflash"><img src="img/s9.webp" alt="" loading="lazy"></div></div><span class="t anton">Brat</span><span class="n">(Vaggi)</span></button><button class="card" type="button" aria-label="Blade, Hisyam"><div class="cut"><div class="ph ht limeflash"><img src="img/s1.webp" alt="" loading="lazy"></div></div><span class="t anton">Blade</span><span class="n">(Hisyam)</span></button><button class="card" type="button" aria-label="Grudge, Cepa"><div class="cut"><div class="ph ht limeflash"><img src="img/s2.webp" alt="" loading="lazy"></div></div><span class="t anton">Grudge</span><span class="n">(Cepa)</span></button><button class="card" type="button" aria-label="Fray, Riveer"><div class="cut"><div class="ph ht limeflash"><img src="img/s3.webp" alt="" loading="lazy"></div></div><span class="t anton">Fray</span><span class="n">(Riveer)</span></button><button class="card" type="button" aria-label="Wasted, Bang boy lowk funny"><div class="cut"><div class="ph ht limeflash"><img src="img/s4.webp" alt="" loading="lazy"></div></div><span class="t anton">Wasted</span><span class="n">(Bang boy lowk funny)</span></button><button class="card" type="button" aria-label="Errant, Cald"><div class="cut"><div class="ph ht limeflash"><img src="img/s5.webp" alt="" loading="lazy"></div></div><span class="t anton">Errant</span><span class="n">(Cald)</span></button><button class="card" type="button" aria-label="Unfixed, Edward"><div class="cut"><div class="ph ht limeflash"><img src="img/s6.webp" alt="" loading="lazy"></div></div><span class="t anton">Unfixed</span><span class="n">(Edward)</span></button><button class="card" type="button" aria-label="Unbound, Lucian"><div class="cut"><div class="ph ht limeflash"><img src="img/s7.webp" alt="" loading="lazy"></div></div><span class="t anton">Unbound</span><span class="n">(Lucian)</span></button><button class="card" type="button" aria-label="Flicker, Ares"><div class="cut"><div class="ph ht limeflash"><img src="img/s8.webp" alt="" loading="lazy"></div></div><span class="t anton">Flicker</span><span class="n">(Ares)</span></button></div>
+  </section>
+
+  <!-- OUTRO -->
+  <section id="outro" aria-label="©SEVORNT">
+    <div class="cut rv"><div class="ph"><img src="img/cover.webp" alt="Sevornt edit: ©SEVORNT, outlaw youth" loading="lazy"></div></div>
+    <div class="anton spray glitch rv" data-t="©sevornt">©sevornt</div>
+    <div class="mono rv">live from the in between</div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+let lenis = null;
+if (!reduce) {
+  lenis = new Lenis({ lerp: 0.1 });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+}
+
+/* ---------- music: starts on the "tap to enter" tap ---------- */
+(function music() {
+  const song = $("#song"), box = $("#player"), btn = $("#playBtn"), icon = btn.querySelector(".pp use");
+  song.volume = 0.8;
+  const setUI = on => { box.classList.toggle("on", on); btn.setAttribute("aria-pressed", on); icon.setAttribute("href", on ? "#i-pause" : "#i-play");
+    btn.setAttribute("aria-label", (on ? "Pause" : "Play") + " Shut It Down by Drake and The-Dream"); };
+  song.addEventListener("play", () => setUI(true));
+  song.addEventListener("pause", () => setUI(false));
+  window.startSong = () => song.play().catch(() => {});
+  btn.addEventListener("click", () => (song.paused ? window.startSong() : song.pause()));
+})();
+
+/* ---------- intro: the tag sprays on, barbed wire draws, tap to enter ---------- */
+function splats(host, n) {
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement("span"); d.className = "splat";
+    const s = rnd(3, 14); d.style.cssText = `width:${s}px;height:${s}px;left:${rnd(15, 85)}%;top:${rnd(30, 62)}%`;
+    host.appendChild(d);
+    gsap.to(d, { opacity: rnd(0.5, 1), scale: rnd(0.6, 1.4), duration: 0.15, delay: rnd(0.2, 0.7) });
+  }
+}
+function heroIn() {
+  const tl = gsap.timeline();
+  if (reduce) return tl;
+  tl.from(".sw", { scale: 0, transformOrigin: "50% 50%", rotate: () => rnd(-40, 40), duration: 0.9, ease: "back.out(1.6)", stagger: 0.1 })
+    .from("#hero .cut", { scale: 1.4, opacity: 0, rotate: 12, duration: 0.5, ease: "power4.in" }, 0.2)
+    .to("#hero", { x: 6, duration: 0.05, yoyo: true, repeat: 3 }, 0.7)
+    .from(".logo", { opacity: 0, filter: "blur(18px)", scale: 1.25, duration: 0.7, ease: "power2.out" }, 0.6)
+    .from(".thorn", { opacity: 0, scale: 0, duration: 0.5, ease: "back.out(2.5)", stagger: 0.1 }, 0.8);
+  return tl;
+}
+const loaded = new Promise(r => (document.readyState === "complete" ? r() : addEventListener("load", r)));
+Promise.race([loaded, new Promise(r => setTimeout(r, 5000))]).then(() => {
+  const intro = $("#intro"), enter = $("#enter");
+  const done = () => { intro.remove(); lenis && lenis.start(); ScrollTrigger.refresh(); };
+  const ready = () => { enter.classList.add("ready"); enter.focus({ preventScroll: true }); };
+  enter.addEventListener("click", () => {
+    window.startSong();
+    enter.classList.remove("ready");
+    if (reduce) return done();
+    gsap.timeline({ onComplete: done })
+      .to(intro, { clipPath: "polygon(0 0,100% 0,100% 0,0 0)", duration: 0.7, ease: "power4.inOut" })
+      .add(heroIn(), "-=0.3");
+  }, { once: true });
+  if (reduce) return ready();
+  gsap.set(intro, { clipPath: "polygon(0 0,100% 0,100% 100%,0 100%)" });
+  gsap.timeline({ onComplete: ready })
+    .to("#wire1", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" })
+    .from(".barb", { scale: 0, transformOrigin: "50% 50%", duration: 0.3, stagger: 0.04, ease: "back.out(3)" }, "-=0.5")
+    .from("#iLogo", { opacity: 0, filter: "blur(24px)", scale: 1.3, duration: 0.8, ease: "power2.out", onStart: () => splats(intro, 26) }, 0.2)
+    .from("#intro .mono", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2");
+});
+
+/* ---------- scroll motion ---------- */
+if (!reduce) {
+  gsap.to("#orbitG", { rotate: 360, transformOrigin: "200px 200px", duration: 26, ease: "none", repeat: -1 });
+  gsap.to(".sw", { y: (i) => (i % 2 ? -18 : 14), rotate: (i) => (i % 2 ? 4 : -5), duration: 3.4, yoyo: true, repeat: -1, ease: "sine.inOut", transformOrigin: "50% 50%" });
+  gsap.to(".stage", { yPercent: 18, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
+  /* ticker: drifts on its own, faster while you scroll */
+  const tick = gsap.to("#tick", { xPercent: -50, duration: 22, ease: "none", repeat: -1 });
+  ScrollTrigger.create({ onUpdate: s => gsap.to(tick, { timeScale: 1 + Math.min(6, Math.abs(s.getVelocity()) / 400), duration: 0.2, overwrite: true, onComplete: () => gsap.to(tick, { timeScale: 1, duration: 1 }) }) });
+
+  $$(".rv").forEach(el => gsap.from(el, { opacity: 0, y: 40, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none reverse" } }));
+  /* LIVE FROM THE IN BETWEEN: letters fall into their crooked spots */
+  gsap.from(".live span", { y: -80, opacity: 0, rotate: () => rnd(-50, 50), duration: 0.7, ease: "bounce.out", stagger: 0.03, scrollTrigger: { trigger: ".live", start: "top 80%" } });
+  gsap.to(".star", { rotate: 90, scale: 1.2, ease: "none", scrollTrigger: { trigger: "#between", start: "top bottom", end: "bottom top", scrub: 1 } });
+  gsap.from(".poster", { rotate: -12, y: 80, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".poster", start: "top 85%" } });
+
+  /* roster cards slam down like stickers */
+  ScrollTrigger.batch(".card", { start: "top 92%", once: true,
+    onEnter: els => gsap.from(els, { scale: 1.5, opacity: 0, rotate: () => rnd(-15, 15), duration: 0.45, ease: "power4.in", stagger: 0.08 }) });
+}
+$$(".card").forEach(c => c.addEventListener("click", () => { c.classList.remove("zap"); void c.offsetWidth; c.classList.add("zap"); setTimeout(() => c.classList.remove("zap"), 700); }));
+document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+</script>
+</body>
+</html>
